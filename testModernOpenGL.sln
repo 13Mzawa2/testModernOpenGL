@@ -7,6 +7,10 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "testModernOpenGL", "testMod
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Triangle", "Triangle\Triangle.vcxproj", "{B4278329-28AA-4D2D-A360-07469A7B6A6D}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "UseGLM", "UseGLM\UseGLM.vcxproj", "{1EEDE1E2-F17A-445C-8D44-2E94C899B304}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Texture", "Texture\Texture.vcxproj", "{7880F0CA-98F0-43F0-9F66-449E6032DA1C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -21,6 +25,14 @@ Global
 		{B4278329-28AA-4D2D-A360-07469A7B6A6D}.Debug|Win32.Build.0 = Debug|Win32
 		{B4278329-28AA-4D2D-A360-07469A7B6A6D}.Release|Win32.ActiveCfg = Release|Win32
 		{B4278329-28AA-4D2D-A360-07469A7B6A6D}.Release|Win32.Build.0 = Release|Win32
+		{1EEDE1E2-F17A-445C-8D44-2E94C899B304}.Debug|Win32.ActiveCfg = Debug|Win32
+		{1EEDE1E2-F17A-445C-8D44-2E94C899B304}.Debug|Win32.Build.0 = Debug|Win32
+		{1EEDE1E2-F17A-445C-8D44-2E94C899B304}.Release|Win32.ActiveCfg = Release|Win32
+		{1EEDE1E2-F17A-445C-8D44-2E94C899B304}.Release|Win32.Build.0 = Release|Win32
+		{7880F0CA-98F0-43F0-9F66-449E6032DA1C}.Debug|Win32.ActiveCfg = Debug|Win32
+		{7880F0CA-98F0-43F0-9F66-449E6032DA1C}.Debug|Win32.Build.0 = Debug|Win32
+		{7880F0CA-98F0-43F0-9F66-449E6032DA1C}.Release|Win32.ActiveCfg = Release|Win32
+		{7880F0CA-98F0-43F0-9F66-449E6032DA1C}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

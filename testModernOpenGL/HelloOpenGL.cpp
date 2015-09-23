@@ -4,9 +4,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include <GLEW\glew.h>
+#include <GL\glew.h>
 
-#include <GLFW/glfw3.h>
+#include <GL/glfw3.h>
 GLFWwindow* window;
 
 #include <glm/glm.hpp>

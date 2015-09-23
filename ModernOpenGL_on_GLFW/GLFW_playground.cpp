@@ -60,9 +60,9 @@ int main(void)
 	//	.objファイルを読み込みます。
 	Object obj;
 	//bool res = loadOBJ("model/drop_modified_x004.obj", obj.vertices, obj.uvs, obj.normals);
-	bool res = loadOBJ("model/drop_modified_x004.obj", obj);
+	bool res = loadOBJ("model/drop/drop_modified_x004.obj", obj);
 	//	テクスチャ画像を読み込む
-	Mat texImg = imread("model/textures/txt_001_diff.bmp");
+	Mat texImg = imread("model/drop/textures/txt_001_diff.bmp");
 	flip(texImg, texImg, 0);
 	//	新たに作られたテクスチャを"バインド"します。つまりここから後のテクスチャ関数はこのテクスチャを変更します。
 	GLuint texture;

@@ -12,9 +12,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{7880F0CA-98F0-43F0-9F66-449E6032DA1C}</ProjectGuid>
+    <ProjectGuid>{E470D208-81F9-4E09-A6A4-89EDD5AD13A9}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>Texture</RootNamespace>
+    <RootNamespace>ModernOpenGL_on_GLFW</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -58,7 +58,6 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -75,7 +74,6 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -85,19 +83,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <None Include="fragment.shader" />
-    <None Include="packages.config" />
-    <None Include="vertex.shader" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="..\common\inc\OpenGLHeader.h" />
-    <ClInclude Include="..\common\inc\Shader.h" />
-    <ClInclude Include="objloader.hpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="..\common\src\Shader.cpp" />
+    <ClCompile Include="GLFW_playground.cpp" />
     <ClCompile Include="objloader.cpp" />
-    <ClCompile Include="Texture.cpp" />
+    <ClCompile Include="Shader.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="objloader.hpp" />
+    <ClInclude Include="OpenGLHeader.h" />
+    <ClInclude Include="Shader.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Fragment.glsl" />
+    <None Include="packages.config" />
+    <None Include="Vertex.glsl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

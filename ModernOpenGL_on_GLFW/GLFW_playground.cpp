@@ -9,12 +9,6 @@ using namespace cv;
 GLFWwindow	*mainWindow, *subWindow;		//	マルチウィンドウ
 Shader		shader;						//	シェーダークラス
 
-GLuint position_buffer;
-GLuint vertex_array;
-
-const GLuint position_location = 0;
-const GLuint position_bindindex = 0;
-
 int main(void)
 {
 
@@ -62,32 +56,11 @@ int main(void)
 	//	キー入力を受け付けるようにする
 	glfwSetInputMode(mainWindow, GLFW_STICKY_KEYS, GL_TRUE);
 	//	プログラマブルシェーダをロード
-	shader.initGLSL("vertex.shader", "fragment.shader");
-	//	uniformへのハンドルを取得
-	//	初期化時だけ
-	GLuint MatrixID = glGetUniformLocation(shader.program, "MVP");		//	vertex.shader内の uniform mat4 MVP; へのID
-	GLuint textureID = glGetUniformLocation(shader.program, "myTextureSampler");	// ひとつのOpenGLテクスチャを作ります。
-
+	shader.loadGLSL("Vertex.glsl", "Fragment.glsl");
 	//	.objファイルを読み込みます。
 	Object obj;
-	bool res = loadOBJ("model/drop_modified_x004.obj", obj.vertices, obj.uvs, obj.normals);
-	//	Vertex Array IDを設定
-	GLuint VertexArrayID;
-	glGenVertexArrays(1, &VertexArrayID);
-	glBindVertexArray(VertexArrayID);
-
-	//	頂点バッファをOpenGLに渡す
-	GLuint vertexbuffer;
-	glGenBuffers(1, &vertexbuffer);							//	バッファを1つ作成
-	glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);			//	以降のコマンドをvertexbufferバッファに指定
-	glBufferData(GL_ARRAY_BUFFER, sizeof(glm::vec3) * obj.vertices.size() , &obj.vertices[0], GL_STATIC_DRAW);		//	頂点をOpenGLのvertexbuferに渡す
-
-	//	UV座標バッファ
-	GLuint uvbuffer;
-	glGenBuffers(1, &uvbuffer);
-	glBindBuffer(GL_ARRAY_BUFFER, uvbuffer);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(glm::vec2) * obj.uvs.size(), &obj.uvs[0], GL_STATIC_DRAW);
-
+	//bool res = loadOBJ("model/drop_modified_x004.obj", obj.vertices, obj.uvs, obj.normals);
+	bool res = loadOBJ("model/drop_modified_x004.obj", obj);
 	//	テクスチャ画像を読み込む
 	Mat texImg = imread("model/textures/txt_001_diff.bmp");
 	flip(texImg, texImg, 0);
@@ -108,6 +81,28 @@ int main(void)
 	//	ミップマップを作成
 	glGenerateMipmap(GL_TEXTURE_2D);
 
+	//	Vertex Array IDを設定
+	GLuint VertexArrayID;
+	glGenVertexArrays(1, &VertexArrayID);
+	glBindVertexArray(VertexArrayID);
+
+	//	uniformへのハンドルを取得
+	//	初期化時だけ
+	GLuint MatrixID = glGetUniformLocation(shader.program, "MVP");		//	vertex.shader内の uniform mat4 MVP; へのID
+	GLuint textureID = glGetUniformLocation(shader.program, "myTextureSampler");	// ひとつのOpenGLテクスチャを作ります。
+
+	//	頂点バッファをOpenGLに渡す
+	GLuint vertexbuffer;
+	glGenBuffers(1, &vertexbuffer);							//	バッファを1つ作成
+	glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);			//	以降のコマンドをvertexbufferバッファに指定
+	glBufferData(GL_ARRAY_BUFFER, sizeof(glm::vec3) * obj.vertices.size(), &obj.vertices[0], GL_STATIC_DRAW);		//	頂点をOpenGLのvertexbuferに渡す
+
+	//	UV座標バッファ
+	GLuint uvbuffer;
+	glGenBuffers(1, &uvbuffer);
+	glBindBuffer(GL_ARRAY_BUFFER, uvbuffer);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(glm::vec2) * obj.uvs.size(), &obj.uvs[0], GL_STATIC_DRAW);
+
 
 
 	//	メインループ
@@ -116,6 +111,8 @@ int main(void)
 	{
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		glUseProgram(shader.program);			//	シェーダを利用
+		glEnable(GL_DEPTH_TEST);
+		//glDepthFunc(GL_LESS);			// 前のものよりもカメラに近ければ、フラグメントを受け入れる
 
 		// 射影行列：45°の視界、アスペクト比4:3、表示範囲：0.1単位  100単位
 		glm::mat4 Projection = glm::perspective(45.0f, 4.0f / 3.0f, 0.1f, 10000.0f);
